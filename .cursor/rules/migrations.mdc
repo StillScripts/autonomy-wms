@@ -1,0 +1,6 @@
+---
+description: Use this for anything related to migrations
+globs: 
+alwaysApply: false
+---
+When creating a migration, ALWAYS use the CLI. This is CRUCIAL because you need to ensure the correct timestamp gets generated and Laravel handles this nicely for us. After we create the migration with the CLI, then you can edit the migration file that has been created.

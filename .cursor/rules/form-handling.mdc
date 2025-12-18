@@ -1,0 +1,71 @@
+---
+description: Use this when creating or updating a form in a `.tsx` file.
+globs: 
+alwaysApply: false
+---
+# Form Handling Guidelines
+
+## Form Structure
+We are using `@tanstack/react-form` for managing client-side forms. This is a new package, so please consider the specific examples
+to better understand how to build a form in this codebase. 
+
+### Validation
+Use `arktype` for validation schema of the form. For example: 
+```tsx
+const ThirdPartyProviderSchema = type({
+    name: 'string',
+    description: 'string?',
+    is_active: 'boolean',
+});
+
+type ThirdPartyProviderSchema = typeof ThirdPartyProviderSchema.infer;
+```
+
+### Reusability
+We reuse the exact same form for creating or updating a model. The first part of this resuability is the props where we extend the `ReusableForm` interface which includes `mode: 'create' | 'edit'` as a value: 
+```tsx
+interface Props extends ReusableForm<ThirdPartyProviderSchema> {
+    provider?: ThirdPartyProvider;
+}
+```
+
+The second part of reusability is definining the text content of the form to support both modes:
+```tsx
+const textContent: FormTextContext = {
+    create: {
+        title: 'Create Provider',
+        description: 'Define a new provider for your organisation',
+        buttonText: 'Create Provider',
+    },
+    edit: {
+        title: 'Edit Provider',
+        description: 'Modify your existing provider',
+        buttonText: 'Update Provider',
+    },
+};
+```
+
+The third part of reusability is handling the form submission to support both modes: 
+```tsx
+onSubmit: async (data) => {
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    if (mode === 'create') {
+        router.post(route('system.third-party-providers.store'), data.value);
+    } else {
+        if (!provider?.id) {
+            console.error('provider.id is required for edit mode');
+            return;
+        }
+        router.put(route('system.third-party-providers.update', { third_party_provider: provider.id }), data.value);
+    }
+},
+```
+
+### Form Layout
+We wrap the form with `<form>` and then we include a ShadCN `<Card>` for the UI. The form fields are contained within `<CardContent>` and the form submit button is contained within `<CardFooter>`
+
+### Form Fields and Submit button. 
+The form fields registered to the `useAppForm` hook for Tanstack form are all included in [form-context.tsx](mdc:resources/js/components/forms/form-context.tsx)
+
+## Full Form Implementation Example
+See [third-party-provider-form.tsx](mdc:resources/js/pages/system/third-party-providers/third-party-provider-form.tsx) as a perfect example of a form in our application.

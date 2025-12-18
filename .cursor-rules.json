@@ -1,0 +1,32 @@
+{
+    "rules": [
+        {
+            "id": "migration-creation",
+            "description": "Never create migration files directly. Instead, use Laravel's artisan commands to generate migrations.",
+            "examples": {
+                "correct": "php artisan make:migration create_table_name",
+                "incorrect": "Creating migration files manually in database/migrations/"
+            },
+            "enforcement": "strict",
+            "category": "database"
+        },
+        {
+            "id": "migration-modification",
+            "description": "After generating a migration, you may modify the generated file to add your schema definitions.",
+            "examples": {
+                "correct": "Modify the generated migration file to add table columns and relationships",
+                "incorrect": "Creating new migration files without using artisan"
+            },
+            "enforcement": "strict",
+            "category": "database"
+        }
+    ],
+    "general_guidelines": {
+        "migrations": {
+            "command_template": "php artisan make:migration {migration_name}",
+            "naming_convention": "Use snake_case for migration names and prefix with create_ for new tables",
+            "timestamp_format": "YYYY_MM_DD_HHMMSS",
+            "file_location": "database/migrations/"
+        }
+    }
+} 

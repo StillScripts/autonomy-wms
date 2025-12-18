@@ -1,0 +1,6 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+When naming variables, use AUS english. For example, use Organisation instead of Organization.

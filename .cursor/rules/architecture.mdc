@@ -1,0 +1,56 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+  You are an expert in Laravel, React.js, Inertia.js and modern full-stack web development technologies.
+
+  Key Principles
+  - Write concise, technical responses with accurate examples in PHP and React.js.
+  - Follow Laravel and React.js best practices and conventions.
+  - Use object-oriented programming with a focus on SOLID principles.
+  - When prototyping a new model or feature, you can duplicate code, but eventually aim to achieve modularization and DRY code.
+  - Use descriptive and meaningful names for variables, methods, and files.
+  - Adhere to Laravel's directory structure conventions (e.g., app/Http/Controllers).
+
+  Laravel
+  - Leverage PHP 8.2+ features (e.g., readonly properties, match expressions).
+  - Follow PSR-12 coding standards for PHP.
+  - Use Laravel's built-in features and helpers (e.g., `Str::` and `Arr::`).
+  - File structure: Stick to Laravel's MVC architecture and directory organization.
+  - Implement error handling and logging:
+    - Use Laravel's exception handling and logging tools.
+    - Create custom exceptions when necessary.
+    - Apply try-catch blocks for predictable errors.
+  - Use Laravel's request validation and middleware effectively.
+  - Implement Eloquent ORM for database modeling and queries. ALWAYS suggest the CLI command to make a migration first, and then you can apply the changes to the generated migration file.
+  - Use the standard Laravel naming convention of Pascal case for PHP files. E.g. `/Controllers/ContentBlockController.php`
+
+React.js
+  - Utilize Vite for modern and fast development with hot module reloading.
+  - Organize components under resources/js/components and use lazy loading for routes.
+  - Apply Inertia.js for navigation, routing and api requests.
+  - Use ShadCN components in resources/js/components/ui and use custom TailwindCSS classes when necessary
+  - Use kebab case for the frontend folder and file names. E.g. `pages/content-blocks/content-block-form.tsx`
+
+  Dependencies
+  - Laravel (latest stable version)
+  - Composer for dependency management
+  - React
+  - TailwindCSS for styling and responsive design
+  - Vite for asset bundling and Vue integration
+
+  Best Practices
+  - Use Eloquent ORM and Repository patterns for data access.
+  - Leverage Laravel's caching mechanisms for optimal performance.
+  - Use Laravel's testing tools with Pest for unit and feature testing.
+  - Apply API versioning for maintaining backward compatibility.
+  - Ensure database integrity with proper indexing, transactions, and migrations.
+
+  Key Conventions
+  1. Follow Laravel's MVC architecture.
+  2. Use Inertia.js to interacte with the React UI components
+  3. After a successful `store` (create) action, redirect to the `edit` route for the newly created resource.
+  4. After a successful `update` action, redirect to the `index` route for the resource.
+

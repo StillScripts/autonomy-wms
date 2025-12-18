@@ -1,0 +1,114 @@
+---
+description: When working in a controller and considering the user roles and policies to use
+globs: 
+alwaysApply: false
+---
+# User Policies and Access Rules
+
+## User Types
+- U: User without an org (temporary state)
+- O: Owner
+- A: Admin
+- M: Member
+- MWP: Member with permission
+- C: Customer
+- G: Guest
+
+## Core User Rules
+1. Users must belong to an organisation
+2. New users automatically create and own their organisation
+3. Users can be invited to other organisations as members or admins
+4. Users always have a current organisation that defines their access
+5. Users can switch between organisations they belong to
+
+## Organization Management
+### Invitation Rules
+- O can invite: A, M
+- A can invite: M
+- M cannot invite anyone
+
+### Deletion Rules
+- O can delete: A, M
+- A can delete: M
+- M cannot delete anyone
+- Deletion only affects membership, not user account
+
+### Permission Management
+- O can assign permissions to M
+- A can assign permissions to M
+- M cannot assign permissions
+
+### Viewing Rules
+- O can view: O, A, M
+- A can view: O, A, M
+- M can view: O, A, M
+
+## Website Management
+### Access Rules
+- Create: O, A, M
+- Edit: O, A, M
+- Delete: O, A
+- View: O, A, M, C, G (via API)
+- Logo: File attachment to website
+
+## Content Block Type Management
+### Access Rules
+- Create: O, A, MWP
+- Edit: O, A, MWP
+- Delete: O, A, MWP
+- View: O, A, MWP
+- No access: C, G
+
+## Content Block Management
+### Access Rules
+- Create: O, A, MWP
+- Edit: O, A, MWP
+- Delete: O, A, MWP
+- View: O, A, MWP 
+- View via API: C, G
+- Files: Can have multiple file attachments
+
+## Third Party Integration
+### Access Rules
+- Attach: O, A
+- Edit: O, A
+- Delete: O, A
+- View: O, A
+- No access: M, C, G
+
+## Product Management
+### Access Rules
+- Sync: O, A, MWP
+- Hide: O, A, MWP
+- View: O, A, M
+- View via API: C, G
+
+## Purchase Management
+### Access Rules
+- Test Purchase: O, A, M (with test keys)
+- View All: O, A, M
+- Create Real Purchase: C (via API)
+- View Own Purchases: C (via API)
+- No access: G
+
+## Private File Management
+### Access Rules
+- Upload: O, A, MWP
+- Attach to Product: O, A, MWP
+- View: C (with product purchase)
+- No access: G
+- Files: Single file attachment
+
+## Page Management
+### Access Rules
+- Create: O, A, MWP
+- Edit: O, A, MWP
+- Delete: O, A, MWP
+- View: O, A, MWP, C, G (via API)
+
+## Important Notes
+1. C and G have no direct organization access
+2. All API access for C and G is through service endpoints
+3. Organization switching preserves role-based permissions
+4. File attachments have specific rules per entity type
+

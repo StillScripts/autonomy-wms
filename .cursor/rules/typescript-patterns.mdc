@@ -1,0 +1,13 @@
+---
+description: 
+globs: *.tsx
+alwaysApply: false
+---
+# TypeScript Implementation Guidelines
+
+## Type Definitions
+1. Define types for all Laravel Models in `resources/js/types/models.ts`
+2. Use inferred types and rely on the core model wherever possible
+3. Aim to avoid redundant types
+4. It is OK to use `any` when prototyping something if type errors are getting in the way.
+
