@@ -77,11 +77,21 @@ DB_PASSWORD=secret
 ### 6. Run Migrations and Seeders
 
 ```sh
-php artisan migrate
-php artisan db:seed
+php artisan migrate:fresh --seed
 ```
 
-### 7. Testing
+### 7. Run the Dev Environment
+
+```sh 
+composer run dev
+```
+
+### 8. Login as Test User
+
+Email: `test@example.com`
+Password: `password123`
+
+### 9. Testing
 
 - Create a `.env.testing` file with the same Postgres settings to ensure tests run against Postgres, not SQLite.
 
@@ -142,9 +152,9 @@ cd autonomy-server
 createdb autonomy_server
 cp .env.example .env
 composer install
-php artisan key:generate
 npm install
-php artisan migrate --seed
+php artisan key:generate
+php artisan migrate:fresh --seed
 composer run dev
 ```
 
